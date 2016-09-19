@@ -21,6 +21,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/cardsController.js"></script>
         <script src="scripts/controllers/rateController.js"></script>
+        <script src="scripts/controllers/collapseController.js"></script>
         <script src="scripts/directives/card.js"></script>
 
 
@@ -42,14 +43,40 @@
           </div>
         </section>
         <wdi-card question="Hello??????????????"></wdi-card>
-        <div ng-controller="rateController as rateCtrl">
-         <h4>Rate our App!</h4>
-          <span uib-rating ng-model="rateCtrl.rate" max="rateCtrl.max" read-only="rateCtrl.isReadonly" on-hover="rateCtrl.hoveringOver(value)" on-leave="rateCtrl.overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-          <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+        
+        <div ng-controller="collapseController as collapseCtrl">
+          <button type="button" class="btn btn-default" ng-click="collapseCtrl.isCollapsed = !collapseCtrl.isCollapsed">Click Here to Review Our App!</button>
+          <hr>
+          <div uib-collapse="collapseCtrl.isCollapsed">
+            <div class="well well-lg"> 
+              <div ng-controller="rateController as rateCtrl">
+                <h4>Rate our App!</h4>
+                <span uib-rating ng-model="rateCtrl.rate" max="rateCtrl.max" read-only="rateCtrl.isReadonly" on-hover="rateCtrl.hoveringOver(value)" on-leave="rateCtrl.overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                <span class="label" ng-class="{'label-warning': rateCtrl.percent<30, 'label-info': rateCtrl.percent>=30 && rateCtrl.percent<70, 'label-success': rateCtrl.percent>=70}" ng-show="rateCtrl.overStar && !rateCtrl.isReadonly">{{rateCtrl.percent}}%</span>
 
-          <pre style="margin:15px 0;">Rate: <b>{{rateCtrl.rate}}</b> - Readonly is: <i>{{rateCtrl.isReadonly}}</i> - Hovering over: <b>{{rateCtrl.overStar || "none"}}</b></pre>
+                <pre style="margin:15px 0;">Rate: <b>{{rateCtrl.rate}}</b> - Readonly is: <i>{{rateCtrl.isReadonly}}</i> - Hovering over: <b>{{rateCtrl.overStar || "none"}}</b></pre>
 
-         </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+       
 
 
 
