@@ -4,12 +4,26 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Cards Against Assembly™</title>
+        
+
+
+
         <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="styles/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>  
+
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script> -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/cardsController.js"></script>
+        <script src="scripts/controllers/rateController.js"></script>
+        <script src="scripts/directives/card.js"></script>
+
+
     </head>
     <body>
       <div class="container">
@@ -21,16 +35,23 @@
 
         <section id="cards" class="container-fluid" ng-controller="cardsController as cardsCtrl">
           <div class="row">
-
             <div class="col-sm-6 col-md-6 col-lg-4" ng-repeat="card in cardsCtrl.questionsList" >
-              <div class="card">
-                <h4 class="card-title">{{card.question}}</h4>
-                <h6>Cards Against Assembly</h6>
-              </div>
+            <!-- All this "stuff" into card-directive.html -->
+            <wdi-card question="{{card.question}}"></wdi-card>
             </div>
-
           </div>
         </section>
+        <wdi-card question="Hello??????????????"></wdi-card>
+        <div ng-controller="rateController as rateCtrl">
+         <h4>Rate our App!</h4>
+          <span uib-rating ng-model="rateCtrl.rate" max="rateCtrl.max" read-only="rateCtrl.isReadonly" on-hover="rateCtrl.hoveringOver(value)" on-leave="rateCtrl.overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+          <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+
+          <pre style="margin:15px 0;">Rate: <b>{{rateCtrl.rate}}</b> - Readonly is: <i>{{rateCtrl.isReadonly}}</i> - Hovering over: <b>{{rateCtrl.overStar || "none"}}</b></pre>
+
+         </div>
+
+
 
       <footer>
         <p>Made with <span class="heart">♥︎</span> at General Assembly</p>
