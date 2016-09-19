@@ -1,3 +1,10 @@
+#### Reflection: 
+I really enjoyed this assignment. I didn't really run into many problems. It's actually pretty fun adding 3rd party directives to my app. 
+
+#### Class Original Repo: 
+[Angular Custom Directives](https://github.com/sf-wdi-31/angular-custom-directives "Angular Custom Directives") 
+
+
 <!--
 Creator: Team, editing by Cory
 Market: SF
